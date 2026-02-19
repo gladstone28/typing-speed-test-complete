@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Typing Speed Test</title>
+  <meta name="description" content="A clean, responsive typing speed test. Measure WPM and accuracy with timed or passage mode." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skipLink" href="#main">Skip to content</a>
+
+  <main id="main" class="app" aria-label="Typing speed test">
+    <header class="topbar">
+      <div class="brand" aria-label="App title">
+        <img class="logo logoSm" src="assets/logo-small.svg" alt="Typing Speed Test" />
+        <img class="logo logoLg" src="assets/logo-large.svg" alt="Typing Speed Test" />
+        <div class="brandText">
+          <h1 class="brandTitle">Typing Speed Test</h1>
+          <p class="brandSub">Type as fast as you can in <span id="modeSub">60 seconds</span></p>
+        </div>
+      </div>
+
+      <div class="best" aria-live="polite" aria-label="Personal best">
+        <img class="icon" src="assets/icon-personal-best.svg" alt="" aria-hidden="true" />
+        <span class="bestLabel">Personal best:</span>
+        <span class="bestValue" id="bestWpm">0 WPM</span>
+
+        <span class="pbBadge" id="pbBadge" hidden>
+          <img class="icon" src="assets/icon-new-pb.svg" alt="" aria-hidden="true" />
+          <span>New PB!</span>
+        </span>
+      </div>
+    </header>
+
+    <section class="controls" aria-label="Stats and settings">
+      <div class="stats" aria-label="Live statistics">
+        <div class="stat">
+          <div class="statLabel">WPM</div>
+          <div class="statValue" id="wpm">0</div>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <div class="stat">
+          <div class="statLabel">Accuracy</div>
+          <div class="statValue statAccentRed" id="accuracy">100%</div>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <div class="stat">
+          <div class="statLabel">Time</div>
+          <div class="statValue statAccentYellow" id="time">1:00</div>
+        </div>
+      </div>
+
+      <div class="settings" aria-label="Settings">
+        <div class="settingGroup">
+          <span class="settingLabel" id="difficultyLabel">Difficulty</span>
+          <div class="pillGroup" role="group" aria-labelledby="difficultyLabel">
+            <button class="pill" data-difficulty="easy" type="button">Easy</button>
+            <button class="pill" data-difficulty="medium" type="button">Medium</button>
+            <button class="pill" data-difficulty="hard" type="button">Hard</button>
+          </div>
+        </div>
+
+        <div class="settingGroup">
+          <span class="settingLabel" id="modeLabel">Mode</span>
+          <div class="pillGroup" role="group" aria-labelledby="modeLabel">
+            <button class="pill" data-mode="timed" type="button">
+              Timed (60s)
+              <img class="pillIcon" src="assets/icon-down-arrow.svg" alt="" aria-hidden="true" />
+            </button>
+            <button class="pill" data-mode="passage" type="button">Passage</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="textWrap" aria-label="Typing passage">
+      <p class="srOnly" id="instructions">
+        Click the passage and start typing. Backspace deletes. Press Escape to restart.
+      </p>
+
+      <div class="textBox" role="group" aria-labelledby="instructions">
+        <div class="text" id="text" tabindex="0" role="textbox" aria-multiline="true" aria-label="Typing passage"></div>
+      </div>
+
+      <!-- Hidden input so mobile users still get a keyboard. We capture keydown at document level too. -->
+      <textarea id="hiddenInput" class="hiddenInput"
+        autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false"
+        aria-label="Typing input"></textarea>
+    </section>
+
+    <footer class="footer" aria-label="Actions">
+      <button class="restart" id="restartBtn" type="button">
+        <img class="icon" src="assets/icon-restart.svg" alt="" aria-hidden="true" />
+        Restart Test
+      </button>
+
+      <div class="hint" aria-live="polite">
+        <span class="hintIcon" id="hintIcon" hidden>
+          <img class="icon" src="assets/icon-completed.svg" alt="" aria-hidden="true" />
+        </span>
+        <span id="hintText">Click the passage and start typing.</span>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
